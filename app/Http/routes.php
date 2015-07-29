@@ -38,6 +38,7 @@ Route::post('/sqlformat', ['uses' => 'FormatController@postSql', 'as' => 'format
 Route::match(array('GET', 'POST'), '/hash/{query?}', ['uses' => 'EncryptController@getpostHash', 'as' => 'encrypt.hash']);
 Route::get('/hmac', ['uses' => 'EncryptController@getHmac', 'as' => 'encrypt.hmac']);
 Route::post('/hmac', ['uses' => 'EncryptController@postHmac', 'as' => 'encrypt.hmac.post']);
+Route::post('/hmac2', ['uses' => 'EncryptController@postHmac', 'as' => 'encrypt.hmac.post2']);
 
 
 // HttpController
