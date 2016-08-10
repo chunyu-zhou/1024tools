@@ -1,9 +1,9 @@
 @extends('layouts/main')
-@section('pageTitle', 'Base64解码、Base64编码、base64加密解密、base64encode/base64decode')
+@section('pageTitle', 'Base64解码、Base64编码、Base64加密解密、base64encode/base64decode')
 
 @section('content')
 <div class="row ttitle clearfix">
-	<div class="col-xs-12 col-sm-8"><h3>Base64解码、Base64编码、base64加密解密</h3></div>
+	<div class="col-xs-12 col-sm-8"><h3>Base64解码、Base64编码、Base64加密解密</h3></div>
 	<div class="col-xs-12 col-sm-4">
 		<dl class="list-unstyled pull-right">
 			<!-- <dt>相关工具：</dt>
