@@ -24,7 +24,7 @@
 				{!! Form::select('algo', array_combine($algos, $algos), $algo, ['class' => 'form-control', 'id' => 'algo']) !!}
 			</div>
 			<div class="form-group clearfix">
-				<label for="key" class="control-label">秘钥：</label>
+				<label for="key" class="control-label">密钥：</label>
 				{!! Form::input('text', 'key', $key, ['class' => 'form-control', 'id' => 'key']) !!}
 			</div>
 			<input type="hidden" name="_token" value="{{ csrf_token() }}" />
