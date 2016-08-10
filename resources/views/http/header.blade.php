@@ -1,16 +1,16 @@
 @extends('layouts/main')
-@section('pageTitle', 'Http Headers查看、HTTP请求头查看、HTTP响应头查看')
+@section('pageTitle', 'HTTP Headers查看、HTTP请求头查看、HTTP响应头查看')
 
 @section('content')
 <div class="row ttitle">
-	<div class="col-xs-12 col-sm-7"><h3>Http Headers查看、HTTP请求头查看、HTTP响应头查看</h3></div>
+	<div class="col-xs-12 col-sm-7"><h3>HTTP Headers查看、HTTP请求头查看、HTTP响应头查看</h3></div>
 	<div class="col-xs-12 col-sm-5">
 		<dl class="list-unstyled pull-right">
 			<dt>相关工具:</dt>
 			<dd><a href="/ip">IP查询</a></dd>
 			<dt>文档:</dt>
 			<!-- <dd><a href="/http-headers-docs">headers各项分别代表什么</a></dd> -->
-			<dd><a href="/http-status-code">http状态码</a></dd>
+			<dd><a href="/http-status-code">HTTP状态码</a></dd>
 		</dl>
 	</div>
 </div>
@@ -27,7 +27,7 @@
 <div class="row">
 	<div class="col-xs-12">
 		<span class="powerby">
-			<span class="glyphicon glyphicon-question-sign" title="由于安全原因，headers中的cookie信息已被隐藏"></span> headers中的cookie信息已被隐藏
+			<span class="glyphicon glyphicon-question-sign" title="由于安全原因，headers中的Cookie信息已被隐藏"></span> headers中的Cookie信息已被隐藏
 		</span>
 	</div>
 </div>

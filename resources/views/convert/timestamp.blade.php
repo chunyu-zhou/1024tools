@@ -69,7 +69,7 @@
 <div class="row">
 	<div class="tips">
 		<ul>
-			<li>UNIX时间戳（unix time stamp）为世界协调时间（Coordinated Universal Time 即UTC）1970年01月01日00时00分00秒到现在的总秒数，跟时区无关。</li>
+			<li>UNIX时间戳（UNIX Time Stamp）为世界协调时间（Coordinated Universal Time，即UTC）1970年01月01日00时00分00秒到现在的总秒数，与时区无关。</li>
 			<li>当前UNIX时间戳（基于浏览器时间）：<code id="current_timestamp">-</code> </li>
 		</ul>
 	</div>
