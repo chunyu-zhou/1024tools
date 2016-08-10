@@ -13,7 +13,9 @@
 </div>
 <form>
 	<div class="form-group">
-		<textarea id="query" class="form-control" rows="10" spellcheck="false">{{{$query ?: "请输入要编码或解码的字符串"}}}</textarea>
+		<samp>
+			<textarea id="query" class="form-control" rows="10" spellcheck="false">{{{$query ?: "请输入要编码或解码的字符串"}}}</textarea>
+		</samp>
 	</div>
 	<div class="form-group">
 		<div class="form-inline">
