@@ -7,7 +7,7 @@
 	<div class="col-xs-12 col-sm-2">
 		<dl class="list-unstyled pull-right">
 			<dt>相关工具:</dt>
-			<dd><a href="{{URL::route('encrypt.hash')}}">HASH计算</a></dd>
+			<dd><a href="{{URL::route('encrypt.hash')}}">Hash计算</a></dd>
 		</dl>
 	</div>
 </div>
@@ -17,7 +17,7 @@
 		<form action="{{URL::route('encrypt.hmac.post')}}" method="post">
 			<div class="form-group clearfix">
 				<label for="query" class="control-label">消息：</label>
-				{!! Form::input('text', 'query', $query, ['class' => 'form-control', 'id' => 'query']) !!}
+				<samp>{!! Form::input('text', 'query', $query, ['class' => 'form-control', 'id' => 'query']) !!}</samp>
 			</div>
 			<div class="form-group clearfix">
 				<label for="algo" class="control-label">算法：</label>
@@ -25,22 +25,22 @@
 			</div>
 			<div class="form-group clearfix">
 				<label for="key" class="control-label">秘钥：</label>
-				{!! Form::input('text', 'key', $key, ['class' => 'form-control', 'id' => 'key']) !!}
+				<samp>{!! Form::input('text', 'key', $key, ['class' => 'form-control', 'id' => 'key']) !!}</samp>
 			</div>
 			<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 			<button type="submit" class="btn btn-primary">计算</button>
 			@if (isset($result))
 			<div class="form-group mt10 clearfix">
 				<label for="result" class="control-label">结果A：</label>
-				{!! Form::textarea('result', $result, ['class' => 'form-control', 'id' => 'result', 'rows' => 2, 'spellcheck' => "false"]) !!}
+				<samp>{!! Form::textarea('result', $result, ['class' => 'form-control', 'id' => 'result', 'rows' => 2, 'spellcheck' => "false"]) !!}</samp>
 			</div>
 			<div class="form-group mt10 clearfix">
 				<label for="result" class="control-label">结果A':（对上面的"结果A"进行base64编码）</label>
-				{!! Form::textarea('result', base64_encode($result), ['class' => 'form-control', 'id' => 'result_base64', 'rows' => 2, 'spellcheck' => "false"]) !!}
+				<samp>{!! Form::textarea('result', base64_encode($result), ['class' => 'form-control', 'id' => 'result_base64', 'rows' => 2, 'spellcheck' => "false"]) !!}</samp>
 			</div>
 			<div class="form-group mt10 clearfix">
 				<label for="result" class="control-label">结果B:（hmac计算返回原始二进制数据后进行base64编码）</label>
-				{!! Form::textarea('result', $rawResult, ['class' => 'form-control', 'id' => 'result_base64', 'rows' => 2, 'spellcheck' => "false"]) !!}
+				<samp>{!! Form::textarea('result', $rawResult, ['class' => 'form-control', 'id' => 'result_base64', 'rows' => 2, 'spellcheck' => "false"]) !!}</samp>
 			</div>
 			@endif
 		</form>
@@ -50,7 +50,7 @@
 <div class="row">
 	<div class="tips">
 		<ol>
-			<li>HMAC (Hash-based message authentication code) 常用于接口签名验证</li>
+			<li>HMAC (Hash-based Message Authentication Code) 常用于接口签名验证</li>
 			<li>支持的算法有 {{implode('、', $algos)}} </li>
 		</ol>
 	</div>
