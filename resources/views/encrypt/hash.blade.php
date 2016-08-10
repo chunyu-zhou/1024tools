@@ -22,7 +22,7 @@
 			<button type="submit" class="btn btn-primary">计算</button>
 		</div>
 	</form>
-	
+
 	<div class="col-xs-12">
 		<table class="table table-bordered table-striped mt10" style="word-break:break-word;">
 			<thead>
@@ -39,13 +39,15 @@
 				@foreach ($algos as $key => $algo)
 				<tr id="{{{$algo}}}">
 					<th>{{{++$key}}}</th>
-					<td>{{{$algo}}}</td>
-					<td>{{{$value = hash($algo, $query)}}}</td>
-					<td>{{{strtoupper($value)}}}</td>
-					<td>{{{strlen($value)}}}</td>
+					<td><samp>{{{$algo}}}</samp></td>
+					<td><samp>{{{$value = hash($algo, $query)}}}</samp></td>
+					<td><samp>{{{strtoupper($value)}}}</samp></td>
+					<td><samp>{{{strlen($value)}}}</samp></td>
 					<td>
 						@if ($algo == 'md5')
-							前16位：<br />小写：{{{substr($value, 0, 16)}}}<br />大写：{{{strtoupper(substr($value, 0, 16))}}}
+							前16位：<br />
+							小写：<samp>{{{substr($value, 0, 16)}}}</samp><br />
+							大写：<samp>{{{strtoupper(substr($value, 0, 16))}}}</samp>
 						@endif
 					</td>
 				</tr>
