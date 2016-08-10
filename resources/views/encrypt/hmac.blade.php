@@ -7,7 +7,7 @@
 	<div class="col-xs-12 col-sm-2">
 		<dl class="list-unstyled pull-right">
 			<dt>相关工具:</dt>
-			<dd><a href="{{URL::route('encrypt.hash')}}">HASH计算</a></dd>
+			<dd><a href="{{URL::route('encrypt.hash')}}">Hash计算</a></dd>
 		</dl>
 	</div>
 </div>
