@@ -22,21 +22,29 @@ class EncryptController extends Controller
     public function getHmac()
     {
         $algos = $this->getSortedHashAlgos();
-        $default = ['query' => '', 'algo' => 'sha1', 'key' => ''];
+        $default = ['query' => '', 'algo' => 'sha1', 'key' => '', 'base64encodedkey' => false];
 
         return View::make('encrypt.hmac', array_merge(compact('algos'), $default));
     }
 
     public function postHmac()
     {
-        $input = Input::only('algo', 'query', 'key');
+        $input = Input::only('algo', 'query', 'key', 'base64encodedkey');
         $this->validate($input, ['query' => 'max:2000', 'algo' => 'required', 'key' => 'max:512']);
         $algos = $this->getSortedHashAlgos();
         if (!in_array($input['algo'], $algos)) {
             throw new ToolsException('不支持该算法', ToolsException::CODE_BAD_PARAMS);
         }
-        $result = hash_hmac($input['algo'], $input['query'], $input['key']);
-        $rawResult = base64_encode(hash_hmac($input['algo'], $input['query'], $input['key'], true));
+
+        $key = $input['key'];
+        if ($input['base64encodedkey']) {
+            if (false === ($key = base64_decode($key, true))) {
+                throw new ToolsException('密钥不能base64 decode', ToolsException::CODE_BAD_PARAMS);
+            }
+        }
+
+        $result = hash_hmac($input['algo'], $input['query'], $key);
+        $rawResult = base64_encode(hash_hmac($input['algo'], $input['query'], $key, true));
 
         return View::make('encrypt.hmac', array_merge(compact('algos', 'result', 'rawResult'), $input));
     }

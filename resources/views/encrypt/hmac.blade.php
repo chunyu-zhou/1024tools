@@ -27,6 +27,11 @@
 				<label for="key" class="control-label">密钥：</label>
 				<samp>{!! Form::input('text', 'key', $key, ['class' => 'form-control', 'id' => 'key']) !!}</samp>
 			</div>
+			<div class="checkbox" title="如果您输入的是进行了base64编码处理后的密钥，请勾选此项，否则不勾选">
+				<label>
+					{!! Form::checkbox('base64encodedkey', 1, $base64encodedkey) !!} 密钥进行了base64编码
+				</label>
+			</div>
 			<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 			<button type="submit" class="btn btn-primary">计算</button>
 			@if (isset($result))
