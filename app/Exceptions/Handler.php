@@ -4,6 +4,8 @@ namespace App\Exceptions;
 
 use Exception;
 use App\Models\Typo;
+use App\Support\ApiResponse;
+use App\Exceptions\Exception as ToolsException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -55,6 +57,12 @@ class Handler extends ExceptionHandler
 
         if ($e instanceof HttpException) {
             return parent::render($request, $e);
+        }
+
+        if ($e instanceof ToolsException) {
+            if ($request->ajax()) {
+                return ApiResponse::error($e->getMessage()); 
+            }
         }
 
         return response()->make(view('errors.error'), 500);
