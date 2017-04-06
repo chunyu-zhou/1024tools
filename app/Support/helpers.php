@@ -11,10 +11,6 @@ if (!function_exists('statics_path')) {
      */
     function statics_path()
     {
-        if (Cookie::has('old_browser')) {
-            return '/statics';
-        }
-
-        return '//statics.1024tools.com';
+        return '/statics';
     }
 }
