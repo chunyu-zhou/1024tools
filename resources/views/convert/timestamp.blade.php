@@ -34,31 +34,31 @@
 				<label class="col-xs-4 control-label">普通时间：</label>
 				<div class="col-xs-8 form-inline">
 					<select class="form-control" id="timezone">
-						<option value="-12">GMT -1200</option>
-						<option value="-11">GMT -1100</option>
-						<option value="-10">GMT -1000</option>
-						<option value="-9">GMT -0900</option>
-						<option value="-8">GMT -0800</option>
-						<option value="-7">GMT -0700</option>
-						<option value="-6">GMT -0600</option>
-						<option value="-5">GMT -0500</option>
-						<option value="-4">GMT -0400</option>
-						<option value="-3">GMT -0300</option>
-						<option value="-2">GMT -0200</option>
-						<option value="-1">GMT -0100</option>
-						<option value="0">GMT</option>
-						<option value="1">GMT +0100</option>
-						<option value="2">GMT +0200</option>
-						<option value="3">GMT +0300</option>
-						<option value="4">GMT +0400</option>
-						<option value="5">GMT +0500</option>
-						<option value="6">GMT +0600</option>
-						<option value="7">GMT +0700</option>
-						<option value="8" selected>GMT +0800</option>
-						<option value="9">GMT +0900</option>
-						<option value="10">GMT +1000</option>
-						<option value="11">GMT +1100</option>
-						<option value="11">GMT +1200</option>
+						<option value="-12">UTC-12:00</option>
+						<option value="-11">UTC-11:00</option>
+						<option value="-10">UTC-10:00</option>
+						<option value="-9">UTC-09:00</option>
+						<option value="-8">UTC-08:00</option>
+						<option value="-7">UTC-07:00</option>
+						<option value="-6">UTC-06:00</option>
+						<option value="-5">UTC-05:00</option>
+						<option value="-4">UTC-04:00</option>
+						<option value="-3">UTC-03:00</option>
+						<option value="-2">UTC-02:00</option>
+						<option value="-1">UTC-01:00</option>
+						<option value="0">UTC±00:00</option>
+						<option value="1">UTC+01:00</option>
+						<option value="2">UTC+02:00</option>
+						<option value="3">UTC+03:00</option>
+						<option value="4">UTC+04:00</option>
+						<option value="5">UTC+05:00</option>
+						<option value="6">UTC+06:00</option>
+						<option value="7">UTC+07:00</option>
+						<option value="8" selected>UTC+08:00</option>
+						<option value="9">UTC+09:00</option>
+						<option value="10">UTC+10:00</option>
+						<option value="11">UTC+11:00</option>
+						<option value="11">UTC+12:00</option>
 					</select>
 					<input type="text" class="form-control" id="datetimestr" placeholder="" spellcheck="false">
 				</div>
@@ -69,7 +69,7 @@
 <div class="row">
 	<div class="tips">
 		<ul>
-			<li>UNIX时间戳（unix time stamp）为世界协调时间（Coordinated Universal Time 即UTC）1970年01月01日00时00分00秒到现在的总秒数，跟时区无关。</li>
+			<li>UNIX时间戳（UNIX Time Stamp）为世界协调时间（Coordinated Universal Time，即UTC）1970年01月01日00时00分00秒到现在的总秒数，与时区无关。</li>
 			<li>当前UNIX时间戳（基于浏览器时间）：<code id="current_timestamp">-</code> </li>
 		</ul>
 	</div>

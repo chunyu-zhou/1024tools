@@ -1,73 +1,71 @@
-<?php namespace App\Exceptions;
+<?php
 
-use Log;
-use Request;
-use Redirect;
-use Response;
+namespace App\Exceptions;
+
 use Exception;
-use ApiResponse;
 use App\Models\Typo;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use App\Support\ApiResponse;
+use App\Exceptions\Exception as ToolsException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
-class Handler extends ExceptionHandler {
+class Handler extends ExceptionHandler
+{
+    /**
+     * A list of the exception types that should not be reported.
+     *
+     * @var array
+     */
+    protected $dontReport = [
+        HttpException::class,
+        ModelNotFoundException::class,
+    ];
 
-	/**
-	 * A list of the exception types that should not be reported.
-	 *
-	 * @var array
-	 */
-	protected $dontReport = [
-		'Symfony\Component\HttpKernel\Exception\HttpException'
-	];
+    /**
+     * Report or log an exception.
+     *
+     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
+     *
+     * @param \Exception $e
+     */
+    public function report(Exception $e)
+    {
+        return parent::report($e);
+    }
 
-	/**
-	 * Report or log an exception.
-	 *
-	 * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
-	 *
-	 * @param  \Exception  $e
-	 * @return void
-	 */
-	public function report(Exception $e)
-	{
-		return parent::report($e);
-	}
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Exception               $e
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function render($request, Exception $e)
+    {
+        if ($e instanceof ModelNotFoundException) {
+            $e = new NotFoundHttpException($e->getMessage(), $e);
+        }
 
-	/**
-	 * Render an exception into an HTTP response.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \Exception  $e
-	 * @return \Illuminate\Http\Response
-	 */
-	public function render($request, Exception $e)
-	{
-		$error = '服务器错误';
-		try {
-			if ($e instanceof NotFoundHttpException) {
-				$context = [
-					'url' => Request::fullUrl(),
-					'ip' => Request::getClientIp(),
-					'user-agent' => Request::header('user-agent')
-				];
-				if ($route = Typo::getRoute(Request::segment(1))) {
-					Log::notice('typo-hits', $context);
-					return Redirect::route($route);
-				}
-				Log::warning('404', $context);
-				return Response::view('site.404', [], 404);
+        if ($e instanceof NotFoundHttpException) {
+            if ($route = Typo::getRoute($request->path())) {
+                return redirect()->route($route);
+            }
+        }
 
-			} elseif ($e instanceof ToolsException) {
-				Log::error($e);
-				return Response::view('site.error', ['error' => $e->getMessage()], 500);
-			}
+        if ($e instanceof HttpException) {
+            return parent::render($request, $e);
+        }
 
-			Log::error($e);
-		} catch (Exception $e) {
-			Log::error($e);
-		}
-		return Response::view('site.error', compact('error'), 500);
-	}
+        if ($e instanceof ToolsException) {
+            if ($request->ajax()) {
+                return ApiResponse::error($e->getMessage()); 
+            }
+        }
 
+        return response()->make(view('errors.error'), 500);
+
+    }
 }

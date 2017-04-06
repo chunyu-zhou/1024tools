@@ -1,13 +1,15 @@
-<?php namespace App\Http\Middleware;
+<?php
+
+namespace App\Http\Middleware;
 
 use Closure;
 
-class Proxies {
+class Proxies
+{
+    public function handle($request, Closure $next)
+    {
+        $request->setTrustedProxies(['10.0.0.0/8']);
 
-	public function handle($request, Closure $next)
-	{
-		$request->setTrustedProxies(['10.0.0.0/8']);
-
-		return $next($request);
-	}
+        return $next($request);
+    }
 }

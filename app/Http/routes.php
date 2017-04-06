@@ -27,6 +27,8 @@ Route::post('/less', ['uses' => 'ConvertController@postLess', 'as' => 'convert.l
 Route::get('/xmljson', ['uses' => 'ConvertController@getXmlJson', 'as' => 'convert.xmljson']);
 Route::get('/markdown', ['uses' => 'ConvertController@getMarkdown', 'as' => 'convert.markdown']);
 Route::get('/timestamp', ['uses' => 'ConvertController@getTimestamp', 'as' => 'convert.timestamp']);
+Route::get('/unserialize', ['uses' => 'ConvertController@getUnserialize', 'as' => 'convert.unserialize']);
+Route::post('/unserialize', ['uses' => 'ConvertController@postUnserialize', 'as' => 'convert.unserialize.post']);
 
 // FormatController
 Route::get('/json', ['uses' => 'FormatController@getJson', 'as' => 'format.json']);
@@ -35,11 +37,10 @@ Route::get('/sqlformat', ['uses' => 'FormatController@getSql', 'as' => 'format.s
 Route::post('/sqlformat', ['uses' => 'FormatController@postSql', 'as' => 'format.sql.post']);
 
 // EncryptController
-Route::match(array('GET', 'POST'), '/hash/{query?}', ['uses' => 'EncryptController@getpostHash', 'as' => 'encrypt.hash']);
+Route::match(['GET', 'POST'], '/hash/{query?}', ['uses' => 'EncryptController@getpostHash', 'as' => 'encrypt.hash']);
 Route::get('/hmac', ['uses' => 'EncryptController@getHmac', 'as' => 'encrypt.hmac']);
 Route::post('/hmac', ['uses' => 'EncryptController@postHmac', 'as' => 'encrypt.hmac.post']);
 Route::post('/hmac2', ['uses' => 'EncryptController@postHmac', 'as' => 'encrypt.hmac.post2']);
-
 
 // HttpController
 Route::get('/header', ['uses' => 'HttpController@getHeader', 'as' => 'http.header']);

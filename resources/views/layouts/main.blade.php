@@ -7,10 +7,10 @@
 	<meta name="author" content="dev@1024tools.com">
 	<title>@yield('pageTitle', '1024tools') - {{ trans('site.name') }}</title>
 	<script src="{{statics_path()}}/libs/pace/1.0.0/pace.min.js"></script>
-	<link rel="shortcut icon" href="/favicon.ico" /> 
+	<link rel="shortcut icon" href="/favicon.ico" />
 	<link rel="apple-touch-icon" href="{{statics_path()}}/images/icon_192.png" />
 	<link rel="stylesheet" href="{{statics_path()}}/libs/bootstrap/customize/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="{{statics_path()}}/css/main.css?20150206" />
+	<link rel="stylesheet" href="{{statics_path()}}/css/main.css?20160303" />
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 		<script src="{{{URL::route('site.browserDetect')}}}"></script>
@@ -19,13 +19,14 @@
 	<![endif]-->
 	<script type="text/javascript">
 		var site_config = {
-			"tools_version": "0.0.8"
+			"tools_version": "0.0.9"
 		};
 	</script>
 	@yield('header')
 </head>
 <body id="body" class="@yield('bodyClass', '')">
 	<noscript><div class="noscript"></div></noscript>
+
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -53,9 +54,10 @@
 											<li><a href="{{{URL::route('convert.xmljson')}}}">XML/JSON互转</a></li>
 											<li><a href="{{{URL::route('convert.less')}}}">LESS转CSS</a></li>
 											<li><a href="{{{URL::route('convert.timestamp')}}}">UNIX时间戳转换</a></li>
+											<li><a href="{{{URL::route('convert.unserialize')}}}">PHP反序列化</a></li>
 											<li class="divider"></li>
-											<li class="dropdown-header">加解密/HASH：</li>
-											<li><a href="{{{URL::route('encrypt.hash')}}}">HASH计算/MD5/SHA1</a></li>
+											<li class="dropdown-header">加解密/Hash：</li>
+											<li><a href="{{{URL::route('encrypt.hash')}}}">Hash计算/MD5/SHA1</a></li>
 											<li><a href="{{{URL::route('encrypt.hmac')}}}">HMAC计算</a></li>
 										</ul>
 									</div>
@@ -101,6 +103,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="{{{URL::route('convert.base64')}}}">Base64编码解码</a></li>
 							<li><a href="{{{URL::route('convert.urlencode')}}}">Url编码解码</a></li>
+							<li><a href="{{{URL::route('convert.unserialize')}}}">PHP反序列化</a></li>
 							<li class="divider"></li>
 							<li><a href="{{{URL::route('convert.markdown')}}}">Markdown转HTML</a></li>
 							<li><a href="{{{URL::route('convert.xmljson')}}}">XML/JSON互转</a></li>
@@ -118,9 +121,9 @@
 						</ul>
 					</li>
 					<li class="dropdown" onmouseover="this.className='dropdown open'" onmouseout="this.className='dropdown'">
-						<a href="javascript:" class="dropdown-toggle">加解密/HASH<b class="caret"></b></a>
+						<a href="javascript:" class="dropdown-toggle">加解密/Hash<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="{{{URL::route('encrypt.hash')}}}">HASH计算/MD5/SHA1</a></li>
+							<li><a href="{{{URL::route('encrypt.hash')}}}">Hash/MD5/SHA1</a></li>
 							<li><a href="{{{URL::route('encrypt.hmac')}}}">HMAC计算</a></li>
 						</ul>
 					</li>
@@ -152,6 +155,7 @@
 					<li class="dropdown" onmouseover="this.className='dropdown open'" onmouseout="this.className='dropdown'">
 						<a href="javascript:" class="dropdown-toggle">#1024<span class="caret"></span></a>
 						<ul class="dropdown-menu">
+							<li><a href="https://github.com/cnxh/1024tools" target="_blank">Fork me on Github !</a></li>
 							<li><a href="https://github.com/cnxh/1024tools/issues" target="_blank">bug/建议提交</a></li>
 						</ul>
 					</li>
@@ -179,10 +183,11 @@ var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "//hm.baidu.com/hm.js?c4ddd9b935fc38a7aa0448bc092ace0a";
-  var s = document.getElementsByTagName("script")[0]; 
+  var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+
 </div>
 </body>
 
