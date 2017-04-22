@@ -3,8 +3,8 @@
 @section('bodyClass', 'tools-sqlformat')
 @section('content')
 <div class="row ttitle clearfix">
-	<div class="col-xs-12 col-sm-6"><h3>SQL格式化、SQL压缩、SQL高亮、SQL FORMATTER</h3></div>
-	<div class="col-xs-12 col-sm-6">
+	<div class="col-xs-12 col-sm-8"><h3>SQL格式化、SQL压缩、SQL高亮、SQL FORMATTER</h3></div>
+	<div class="col-xs-12 col-sm-4">
 		<dl class="list-unstyled pull-right">
 			<dt>相关工具：</dt>
 			<dd><a href="{{URL::route('format.json')}}" class="text-info">JSON格式化/验证</a></dd>
@@ -26,8 +26,10 @@
 	<div class="col-md-6">
 		<button type="button" class="btn btn-primary format" data-type="format">格式化</button>
 		<button type="button" class="btn btn-primary format" data-type="compress">压缩</button>
+		<button type="button" class="btn btn-warning" id="clear-input">清空</button>
 	</div>
 	<div class="col-md-6">
+		<button type="button" class="btn btn-success" id="copy" data-clipboard-action="copy" data-clipboard-target="#output">复制结果</button>
 		<span class="powerby">
 			SQL格式化/压缩功能由 @<a href="https://github.com/jdorn/sql-formatter" target="_blank">sql-formatter</a> 支持，
 			编辑器由 @<a href="https://github.com/ajaxorg/ace" target="_blank">ace</a> 支持
@@ -42,6 +44,7 @@
 @section('footer')
 
 <script src="{{statics_path()}}/libs/ace/ace.js"></script>
+<script src="{{statics_path()}}/libs/clipboard.js/dist/clipboard.min.js"></script>
 <script>
 $.ajaxSetup({
 	headers: {
@@ -54,6 +57,7 @@ var input = ace.edit("input");
 input.setShowPrintMargin(false);
 input.setTheme("ace/theme/tomorrow_night");
 input.renderer.setShowGutter(false);
+input.focus();
 $('.format').click(function(e){
 	var inputdata = input.getValue();
 	if (inputdata) {
@@ -79,7 +83,22 @@ $('#sql-example').click(function(e){
 	input.clearSelection();
 	e.preventDefault();
 });
+$('#clear-input').click(function(e){
+	input.setValue("");
+	$('#output').html("");
+	input.focus();
+	e.preventDefault();
+});
+// 复制相关的处理
+var clipboard = new Clipboard('#copy');
+clipboard.on('success', function(e) {
+	showmsg("success", "复制成功")
+	e.clearSelection();
+});
 
+clipboard.on('error', function(e) {
+	showmsg("danger", "复制失败，请手动复制")
+});
 function showmsg(type, msg) {
 	$('#message').hide().removeClass("bg-danger").removeClass("bg-success").addClass("bg-"+type).text(msg).show(100);
 }
