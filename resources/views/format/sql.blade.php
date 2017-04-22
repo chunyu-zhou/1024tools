@@ -95,7 +95,6 @@ clipboard.on('success', function(e) {
 	showmsg("success", "复制成功")
 	e.clearSelection();
 });
-
 clipboard.on('error', function(e) {
 	showmsg("danger", "复制失败，请手动复制")
 });
